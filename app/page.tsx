@@ -84,9 +84,29 @@ export default function Home()
 			setLogs(prev => [...prev, event . data]);
 			try {
 				const data = JSON . parse(event . data);
+
+				// In case of PINSTAT all response
 				if ( Array . isArray(data . pins) && data . pins . length === 256 ) {
 					setPins(data.pins);
 				}
+
+				// In case of ON/OFF response
+				else if ( Array . isArray(data . results) && data . results . length > 0 ) {
+					console . log("Partial update received:", data);
+
+					setPins((prevPins) => {
+						const updated = [...prevPins];
+						const newState = data . cmd === "ON" ? 1 : 0;
+						data . results . forEach((item: { pin: number; res?: number }) => {
+							if ( typeof item . pin === "number" && item . pin >= 0 && item . pin < 256) {
+								updated[item . pin] = newState;
+							}
+						});
+
+						return updated;
+					});
+				}
+
 				if ( typeof data . scan === 'number' ) {
 					setScan(data . scan);
 				}
