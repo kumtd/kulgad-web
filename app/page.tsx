@@ -51,7 +51,7 @@ export default function Home()
 		const updateSize = () => {
 			const w = window . innerWidth;
 			const newSize = Math . floor((w - 100) / 16);
-			setCellSize(Math . max(20, Math . min(newSize, 60))); // 20 ~ 60
+			setCellSize(Math . max(10, Math . min(newSize, 60))); // 10 ~ 60
 		};
 		updateSize();
 		window . addEventListener('resize', updateSize);
@@ -192,7 +192,112 @@ export default function Home()
 	//----------------------------------------------------------
 	return (
 		<div className="p-4 space-y-4">
-			{/* Server connection status */}
+			{/*----------------------------------------------------------------------------*/}
+			{/* Header                                                                     */}
+			{/*----------------------------------------------------------------------------*/}
+			<header className="w-full flex items-center justify-between px-6 py-3"
+				style={{
+					borderBottom: '1px solid #ccc',
+					marginBottom: '12px',
+					position    : 'relative',
+				}}
+			>
+
+				{/*--------------------------------------------------------*/}
+				{/* Left: KCMS                                             */}
+				{/*--------------------------------------------------------*/}
+				<div
+					style={{
+						flex          : '0 0 auto',
+						display       : 'flex',
+						alignItems    : 'center',
+						justifyContent: 'flex-start',
+					}}
+				>
+					<img
+						src="/kulgad-web/KCMS-OfficialLogo-box150.jpeg"
+						alt="KCMS Logo"
+
+						// Logo click and hover effect
+						onClick={() => (window.location.href = '/kulgad-web')}
+						style={{
+							maxHeight : '10vh', // 10% of browser height
+							height    : 'auto',
+							width     : 'auto',
+							objectFit : 'contain',
+							cursor    : 'pointer',
+							transition: 'transform 0.2s ease, filter 0.2s ease',
+						}}
+						onMouseEnter={(e) => {
+							(e . currentTarget as HTMLImageElement) . style . transform = 'scale(1.05)';
+							(e . currentTarget as HTMLImageElement) . style . filter    = 'brightness(1.2)';
+						}}
+						onMouseLeave={(e) => {
+							(e . currentTarget as HTMLImageElement) . style . transform = 'scale(1.0)';
+							(e . currentTarget as HTMLImageElement) . style . filter    = 'brightness(1.0)';
+						}}
+					/>
+				</div>
+
+				{/*--------------------------------------------------------*/}
+				{/* Center: title                                          */}
+				{/*--------------------------------------------------------*/}
+				<div
+					style={{
+						position  : 'absolute',
+						left      : '50%',
+						transform : 'translateX(-50%)',
+						textAlign : 'center',
+						fontWeight: 'bold',
+						fontSize  : 'clamp(1rem, 2vw, 2rem)', // Depends on window size
+						userSelect: 'none',
+						whiteSpace: 'nowrap',
+					}}
+				>
+					LGAD Tester
+				</div>
+
+				{/*--------------------------------------------------------*/}
+				{/* Right: KU                                              */}
+				{/*--------------------------------------------------------*/}
+				<div
+					style={{
+						flex          : '0 0 auto',
+						display       : 'flex',
+						alignItems    : 'center',
+						justifyContent: 'flex-end',
+					}}
+				>
+					<img
+						src="/kulgad-web/crimson2positive.gif"
+						alt="KU Logo"
+
+						// Logo click and hover effect
+						onClick={() => (window.location.href = '/kulgad-web')}
+						style={{
+							maxHeight : '10vh', // 10% of browser height
+							height    : 'auto',
+							width     : 'auto',
+							objectFit : 'contain',
+							cursor    : 'pointer',
+							transition: 'transform 0.2s ease, filter 0.2s ease',
+						}}
+						onMouseEnter={(e) => {
+							(e . currentTarget as HTMLImageElement) . style . transform = 'scale(1.05)';
+							(e . currentTarget as HTMLImageElement) . style . filter    = 'brightness(1.2)';
+						}}
+						onMouseLeave={(e) => {
+							(e . currentTarget as HTMLImageElement) . style . transform = 'scale(1.0)';
+							(e . currentTarget as HTMLImageElement) . style . filter    = 'brightness(1.0)';
+						}}
+					/>
+				</div>
+			</header>
+
+
+			{/*----------------------------------------------------------------------------*/}
+			{/* Server connection status                                                   */}
+			{/*----------------------------------------------------------------------------*/}
 			<div className="flex items-center space-x-2">
 				<div
 					style={{
@@ -215,7 +320,10 @@ export default function Home()
 				)}
 			</div>
 
-			{/* Pin grid */}
+
+			{/*----------------------------------------------------------------------------*/}
+			{/* Pin grid                                                                   */}
+			{/*----------------------------------------------------------------------------*/}
 			<div
 				className="grid gap-1 p-4"
 				style={{
@@ -247,7 +355,10 @@ export default function Home()
 				))}
 			</div>
 			
-			{/* Scan status panel */}
+
+			{/*----------------------------------------------------------------------------*/}
+			{/* Scan status panel                                                          */}
+			{/*----------------------------------------------------------------------------*/}
 			<div className="flex items-center space-x-2">
 				<div
 					style={{
@@ -262,7 +373,10 @@ export default function Home()
 				</span>
 			</div>
 
-			{/* Buttons */}
+
+			{/*----------------------------------------------------------------------------*/}
+			{/* Buttons                                                                    */}
+			{/*----------------------------------------------------------------------------*/}
 			<div className="flex space-x-2">
 				<button
 					onClick={handleScanClick}
@@ -278,7 +392,10 @@ export default function Home()
 				</button>
 			</div>
 
-			{/* Logs */}
+
+			{/*----------------------------------------------------------------------------*/}
+			{/* Logs                                                                       */}
+			{/*----------------------------------------------------------------------------*/}
 			<div className="bg-black text-green-400 p-2 rounded"
 				style={{ height: 200, overflowY: 'auto', fontFamily: 'monospace', fontSize: 12 }}
 			>
